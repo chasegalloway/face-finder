@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import dlib
 import requests
 from PIL import Image
@@ -16,6 +16,11 @@ face_recognizer = dlib.face_recognition_model_v1('dlib_models/dlib_face_recognit
 
 # Directory to store images
 IMAGES_DIR = 'images'
+
+# Route to serve the index page
+@app.route('/', methods=['GET'])
+def index():
+    return render_template('upload.html')
 
 # Function to process the uploaded image
 def process_image(image):
